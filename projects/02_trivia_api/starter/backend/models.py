@@ -15,6 +15,7 @@ setup_db(app)
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_ECHO"]= True
     db.app = app
     db.init_app(app)
     db.create_all()
@@ -54,6 +55,8 @@ class Question(db.Model):
       'id': self.id,
       'question': self.question,
       'answer': self.answer,
+      # 'category': Category.query.get(self.category).format(),
+      # 'category': Category.query.get(self.category).type,
       'category': self.category,
       'difficulty': self.difficulty
     }
@@ -74,5 +77,5 @@ class Category(db.Model):
   def format(self):
     return {
       'id': self.id,
-      'type': self.type
+      'type': self.type     
     }
