@@ -11,6 +11,7 @@ class Search extends Component {
   }
 
   handleInputChange = () => {
+    
     this.setState({
       query: this.search.value
     })
